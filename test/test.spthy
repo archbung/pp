@@ -1,0 +1,8 @@
+!define(rule_enc)([ Fr(!1) ] --> [ Out(!1), !A(!1) ])
+!define(mymsg)(senc(!1, hash('test', !1 ++ '1')))
+!define(msg1)(!mymsg(<'1',~x>, !1))
+!define(msg2)(!mymsg(<'2',~y,'random'>, !1))
+!define(x)('x')
+
+!rule_enc(~!x)
+!msg1(!msg1(!x))
