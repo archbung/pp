@@ -17,11 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PP.  If not, see <http://www.gnu.org/licenses/>.
 
-SHELL = /bin/bash
-.SHELLFLAGS = -o pipefail -c
+shell = $(which bash)
+.shellflags = -o pipefail -c
 
-title = /bin/echo -e "\x1b[1m\x1b[32m\#\#\#\# $1\x1b[0m"
-ok = /bin/echo -e "\x1b[1m\x1b[32m[OK] $1\x1b[0m"
+title = $(which echo) -e -- "\x1b[1m\x1b[32m\#\#\#\# $1\x1b[0m"
+ok = $(which echo) -e -- "\x1b[1m\x1b[32m[OK] $1\x1b[0m"
 
 #####################################################################
 # Platform detection
@@ -71,7 +71,7 @@ $(shell ( test -d .git || ! test -f $(TAG) ) && ./tag.sh $(TAG))
 
 install: $(PP)
 	@$(call title,"installing $<")
-	stack install
+	stack build
 	@$(call ok,"installation done")
 
 clean:
